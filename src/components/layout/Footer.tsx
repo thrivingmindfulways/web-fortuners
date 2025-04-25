@@ -2,16 +2,31 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
 
 export default function Footer() {
+  const [basePath, setBasePath] = useState('')
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+    // Set the base path based on environment
+    setBasePath(process.env.NODE_ENV === 'production' ? '/web-fortuners' : '')
+  }, [])
+  
+  // To prevent hydration mismatch
+  if (!mounted) {
+    return null
+  }
+
   return (
     <footer className="bg-neutral-950 text-neutral-200">
       <div className="container py-12 md:py-16">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-4">
-            <Link href="/" className="flex items-center space-x-2">
+            <Link href={`${basePath}/`} className="flex items-center space-x-2">
               <Image 
-                src="/images/logo.png" 
+                src={`${basePath}/images/logo.png`}
                 alt="Web Fortuners Logo" 
                 width={160} 
                 height={40} 
@@ -27,32 +42,32 @@ export default function Footer() {
             <h3 className="mb-4 text-lg font-medium">Services</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/services/mobile-app-development" className="hover:text-primary transition-colors">
+                <Link href={`${basePath}/services/mobile-app-development`} className="hover:text-primary transition-colors">
                   Mobile App Development
                 </Link>
               </li>
               <li>
-                <Link href="/services/web-development" className="hover:text-primary transition-colors">
+                <Link href={`${basePath}/services/web-development`} className="hover:text-primary transition-colors">
                   Web Development
                 </Link>
               </li>
               <li>
-                <Link href="/services/ecommerce-development" className="hover:text-primary transition-colors">
+                <Link href={`${basePath}/services/ecommerce-development`} className="hover:text-primary transition-colors">
                   Ecommerce Development
                 </Link>
               </li>
               <li>
-                <Link href="/services/api-integration" className="hover:text-primary transition-colors">
+                <Link href={`${basePath}/services/api-integration`} className="hover:text-primary transition-colors">
                   API Integration
                 </Link>
               </li>
               <li>
-                <Link href="/services/cloud-solutions" className="hover:text-primary transition-colors">
+                <Link href={`${basePath}/services/cloud-solutions`} className="hover:text-primary transition-colors">
                   Cloud Solutions
                 </Link>
               </li>
               <li>
-                <Link href="/services/ai-ml-development" className="hover:text-primary transition-colors">
+                <Link href={`${basePath}/services/ai-ml-development`} className="hover:text-primary transition-colors">
                   AI/ML Development
                 </Link>
               </li>
@@ -63,22 +78,22 @@ export default function Footer() {
             <h3 className="mb-4 text-lg font-medium">Company</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/about" className="hover:text-primary transition-colors">
+                <Link href={`${basePath}/about`} className="hover:text-primary transition-colors">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-primary transition-colors">
+                <Link href={`${basePath}/contact`} className="hover:text-primary transition-colors">
                   Contact Us
                 </Link>
               </li>
               <li>
-                <Link href="/privacy-policy" className="hover:text-primary transition-colors">
+                <Link href={`${basePath}/privacy-policy`} className="hover:text-primary transition-colors">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/terms-of-service" className="hover:text-primary transition-colors">
+                <Link href={`${basePath}/terms-of-service`} className="hover:text-primary transition-colors">
                   Terms of Service
                 </Link>
               </li>

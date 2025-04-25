@@ -10,7 +10,10 @@ const nextConfig = {
   trailingSlash: true,
   
   // Disable server-side features
-  reactStrictMode: true
+  reactStrictMode: true,
+  
+  // Configure source maps
+  productionBrowserSourceMaps: true,
 };
 
 export default nextConfig;

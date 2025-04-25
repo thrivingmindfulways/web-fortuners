@@ -2,10 +2,26 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import DebugInfo from '@/components/ui/debug'
 
 export default function HomePage() {
+  const [basePath, setBasePath] = useState('')
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+    // Set the base path based on environment
+    setBasePath(process.env.NODE_ENV === 'production' ? '/web-fortuners' : '')
+  }, [])
+  
+  // To prevent hydration mismatch
+  if (!mounted) {
+    return null
+  }
+
   const services = [
     {
       title: "Mobile App Development",
@@ -32,7 +48,7 @@ export default function HomePage() {
           <path d="M17 17a3 3 0 1 0 0-6h-3v2" />
         </svg>
       ),
-      link: "/services/mobile-app-development",
+      link: `${basePath}/services/mobile-app-development`,
     },
     {
       title: "Web Development",
@@ -55,7 +71,7 @@ export default function HomePage() {
           <line x1="12" x2="12" y1="2" y2="22" />
         </svg>
       ),
-      link: "/services/web-development",
+      link: `${basePath}/services/web-development`,
     },
     {
       title: "Ecommerce Development",
@@ -78,7 +94,7 @@ export default function HomePage() {
           <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
         </svg>
       ),
-      link: "/services/ecommerce-development",
+      link: `${basePath}/services/ecommerce-development`,
     },
     {
       title: "API Integration",
@@ -103,7 +119,7 @@ export default function HomePage() {
           <path d="M5 9h3" />
         </svg>
       ),
-      link: "/services/api-integration",
+      link: `${basePath}/services/api-integration`,
     },
     {
       title: "Cloud Solutions",
@@ -124,7 +140,7 @@ export default function HomePage() {
           <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
         </svg>
       ),
-      link: "/services/cloud-solutions",
+      link: `${basePath}/services/cloud-solutions`,
     },
     {
       title: "AI/ML Development",
@@ -148,12 +164,15 @@ export default function HomePage() {
           <path d="M16 12v4" />
         </svg>
       ),
-      link: "/services/ai-ml-development",
+      link: `${basePath}/services/ai-ml-development`,
     },
   ]
 
   return (
     <div className="flex flex-col min-h-screen">
+      {/* Temporarily add debug info for troubleshooting */}
+      <DebugInfo />
+      
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-neutral-900 to-neutral-800 py-20 md:py-28">
         <div className="container mx-auto px-4 relative z-10">
@@ -167,10 +186,10 @@ export default function HomePage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button asChild size="lg">
-                  <Link href="/contact">Get Started</Link>
+                  <Link href={`${basePath}/contact`}>Get Started</Link>
                 </Button>
                 <Button variant="outline" size="lg" asChild>
-                  <Link href="/services">Explore Services</Link>
+                  <Link href={`${basePath}/services`}>Explore Services</Link>
                 </Button>
               </div>
             </div>
@@ -351,7 +370,7 @@ export default function HomePage() {
             Contact us today to discuss your project and discover how we can help you achieve your digital goals.
           </p>
           <Button size="lg" variant="secondary" asChild>
-            <Link href="/contact">Get in Touch</Link>
+            <Link href={`${basePath}/contact`}>Get in Touch</Link>
           </Button>
         </div>
       </section>

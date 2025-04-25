@@ -10,8 +10,10 @@ import ThemeSwitcher from '@/components/ui/ThemeSwitcher'
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const [basePath, setBasePath] = useState('')
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
     // Determine if we're in production (GitHub Pages) or development
     const isProduction = process.env.NODE_ENV === 'production'
     setBasePath(isProduction ? '/web-fortuners' : '')
@@ -19,11 +21,16 @@ export default function Header() {
 
   const closeMenu = () => setIsOpen(false)
 
+  // To prevent hydration mismatch
+  if (!mounted) {
+    return null
+  }
+
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background">
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-2">
-          <Link href="/" className="flex items-center space-x-2">
+          <Link href={`${basePath}/`} className="flex items-center space-x-2">
             <Image 
               src={`${basePath}/images/logo.png`}
               alt="Web Fortuners Logo" 
@@ -37,32 +44,32 @@ export default function Header() {
         {/* Desktop Menu */}
         <nav className="hidden md:flex items-center gap-6">
           <Link 
-            href="/" 
+            href={`${basePath}/`}
             className="text-sm font-medium text-foreground transition-colors hover:text-primary"
           >
             Home
           </Link>
           <Link 
-            href="/services" 
+            href={`${basePath}/services`}
             className="text-sm font-medium text-foreground transition-colors hover:text-primary"
           >
             Services
           </Link>
           <Link 
-            href="/about" 
+            href={`${basePath}/about`}
             className="text-sm font-medium text-foreground transition-colors hover:text-primary"
           >
             About
           </Link>
           <Link 
-            href="/contact" 
+            href={`${basePath}/contact`}
             className="text-sm font-medium text-foreground transition-colors hover:text-primary"
           >
             Contact
           </Link>
           <ThemeSwitcher />
           <Button asChild>
-            <Link href="/contact">Get a Quote</Link>
+            <Link href={`${basePath}/contact`}>Get a Quote</Link>
           </Button>
         </nav>
         
@@ -93,35 +100,35 @@ export default function Header() {
             <SheetContent side="right" className="w-[300px] sm:w-[400px]">
               <nav className="flex flex-col gap-4 mt-8">
                 <Link 
-                  href="/" 
+                  href={`${basePath}/`}
                   onClick={closeMenu}
                   className="text-lg font-medium text-foreground transition-colors hover:text-primary"
                 >
                   Home
                 </Link>
                 <Link 
-                  href="/services" 
+                  href={`${basePath}/services`}
                   onClick={closeMenu}
                   className="text-lg font-medium text-foreground transition-colors hover:text-primary"
                 >
                   Services
                 </Link>
                 <Link 
-                  href="/about" 
+                  href={`${basePath}/about`}
                   onClick={closeMenu}
                   className="text-lg font-medium text-foreground transition-colors hover:text-primary"
                 >
                   About
                 </Link>
                 <Link 
-                  href="/contact" 
+                  href={`${basePath}/contact`}
                   onClick={closeMenu}
                   className="text-lg font-medium text-foreground transition-colors hover:text-primary"
                 >
                   Contact
                 </Link>
                 <Button asChild className="mt-4">
-                  <Link href="/contact" onClick={closeMenu}>
+                  <Link href={`${basePath}/contact`} onClick={closeMenu}>
                     Get a Quote
                   </Link>
                 </Button>
