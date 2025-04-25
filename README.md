@@ -60,12 +60,19 @@ This website is configured for easy deployment to various platforms:
 
 ### GitHub Pages
 
-1. Run the build command:
-   ```bash
-   npm run build
-   ```
+The website is automatically deployed to GitHub Pages when changes are pushed to the main branch.
 
-2. Commit and push the changes to GitHub.
+#### Configuring GitHub Pages Environment Protection
+
+If you encounter deployment issues with error "Branch is not allowed to deploy to github-pages due to environment protection rules", follow these steps:
+
+1. Go to your repository Settings
+2. Navigate to "Environments" in the left sidebar
+3. Click on the "github-pages" environment
+4. Under "Deployment branches and tags", add "main" as an allowed branch
+5. Save the changes
+
+For more detailed instructions, see [github-pages-deployment-guide.md](github-pages-deployment-guide.md).
 
 ## License
 

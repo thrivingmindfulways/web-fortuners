@@ -4,12 +4,13 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  // This is needed for GitHub Pages deployment
+  
+  // GitHub Pages configuration
   basePath: '/web-fortuners',
   assetPrefix: '/web-fortuners/',
   trailingSlash: true,
   
-  // Disable server-side features
+  // Disable server-side features for static export
   reactStrictMode: true,
   
   // Configure source maps
@@ -17,15 +18,15 @@ const nextConfig = {
   
   // Required for static site generation
   typescript: {
-    // Dangerously allow production builds to successfully complete even if your project has type errors
+    // Allow production builds to successfully complete even if your project has type errors
     ignoreBuildErrors: true,
   },
   eslint: {
     // Allow production builds to successfully complete even if your project has ESLint errors
     ignoreDuringBuilds: true,
   },
-
-  // Environment variables for client-side usage
+  
+  // Environment variables will be replaced at build time
   env: {
     NEXT_PUBLIC_BASE_PATH: '/web-fortuners',
     NEXT_PUBLIC_SITE_URL: 'https://thrivingmindfulways.github.io',
