@@ -1,0 +1,41 @@
+3:I[5935,["185","static/chunks/app/layout-bedb66784292aca6.js"],""]
+5:I[9558,["185","static/chunks/app/layout-bedb66784292aca6.js"],"Providers"]
+6:I[5613,[],""]
+7:I[1778,[],""]
+8:I[8667,["233","static/chunks/233-436c03516b3a18ff.js","250","static/chunks/250-c88572a321caa919.js","160","static/chunks/app/not-found-6ee49007ee037fe5.js"],""]
+4:T607,
+            (function() {
+              // Only run on GitHub Pages
+              if (window.location.hostname === 'thrivingmindfulways.github.io') {
+                // Single Page Apps for GitHub Pages
+                // MIT License
+                // https://github.com/rafgraph/spa-github-pages
+                // This script checks to see if a redirect is present in the query string,
+                // converts it back into the correct url and adds it to the
+                // browser's history using window.history.replaceState(...),
+                // which won't cause the browser to attempt to load the new url.
+                // When the single page app is loaded further down in this file,
+                // the correct url will be waiting in the browser's history for
+                // the single page app to route accordingly.
+                var segmentCount = 1;
+                var l = window.location;
+                if (l.search) {
+                  var q = {};
+                  l.search.slice(1).split('&').forEach(function(v) {
+                    var a = v.split('=');
+                    q[a[0]] = a.slice(1).join('=').replace(/~and~/g, '&');
+                  });
+                  if (q.p !== undefined) {
+                    window.history.replaceState(null, null,
+                      l.pathname.slice(0, -1) + (q.p || '') +
+                      (q.q ? ('?' + q.q) : '') +
+                      l.hash
+                    );
+                  }
+                }
+              }
+            })();
+          0:["fIsqSqDeOM0SfMGI0JBQ3",[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],["",{"children":["__PAGE__",{},["$L1","$L2",null]]},[null,["$","html",null,{"lang":"en","suppressHydrationWarning":true,"className":"no-js","children":[["$","head",null,{"children":[["$","link",null,{"rel":"icon","href":"/web-fortuners/images/favicon.ico","type":"image/x-icon"}],["$","link",null,{"rel":"canonical","href":"https://thrivingmindfulways.github.io/web-fortuners"}],["$","link",null,{"rel":"preconnect","href":"https://fonts.googleapis.com"}],["$","link",null,{"rel":"preconnect","href":"https://fonts.gstatic.com","crossOrigin":"anonymous"}],["$","meta",null,{"name":"color-scheme","content":"light dark"}],["$","$L3",null,{"id":"github-pages-spa-redirect","strategy":"beforeInteractive","children":"$4"}],["$","$L3",null,{"id":"performance-metrics","strategy":"afterInteractive","children":"\n            // Create a performance observer to monitor important metrics\n            if (window.PerformanceObserver) {\n              try {\n                const observer = new PerformanceObserver((list) => {\n                  const entries = list.getEntries();\n                  entries.forEach((entry) => {\n                    // Log metrics to console in development\n                    if (process.env.NODE_ENV !== 'production') {\n                      console.log(`[Performance] ${entry.name}: ${entry.startTime.toFixed(2)}ms`);\n                    }\n                  });\n                });\n                \n                // Observe important metrics\n                observer.observe({ entryTypes: ['largest-contentful-paint', 'first-input', 'layout-shift'] });\n              } catch (e) {\n                console.error('Performance observer error:', e);\n              }\n            }\n          "}]]}],["$","body",null,{"className":"min-h-screen bg-background font-sans antialiased __variable_26c28a","children":[["$","$L5",null,{"children":["$","$L6",null,{"parallelRouterKey":"children","segmentPath":["children"],"loading":"$undefined","loadingStyles":"$undefined","loadingScripts":"$undefined","hasLoading":false,"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L7",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":["$","$L8",null,{}],"notFoundStyles":[],"styles":null}]}],["$","$L3",null,{"id":"js-detection","strategy":"beforeInteractive","children":"document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');"}]]}]]}],null]],[[["$","link","0",{"rel":"stylesheet","href":"/web-fortuners/_next/static/css/90455a056b185440.css","precedence":"next","crossOrigin":""}]],"$L9"]]]]
+2:E{"digest":"NEXT_REDIRECT;replace;/;307;"}
+9:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1, maximum-scale=5"}],["$","meta","1",{"name":"theme-color","media":"(prefers-color-scheme: light)","content":"#ffffff"}],["$","meta","2",{"name":"theme-color","media":"(prefers-color-scheme: dark)","content":"#000000"}],["$","meta","3",{"charSet":"utf-8"}],["$","title","4",{"children":"Web Fortuners | Digital Solutions Agency"}],["$","meta","5",{"name":"description","content":"Web Fortuners is a leading digital solutions agency specializing in web, mobile, ecommerce, API integration, cloud solutions, and AI/ML development."}],["$","meta","6",{"name":"author","content":"Web Fortuners"}],["$","link","7",{"rel":"manifest","href":"/manifest.webmanifest"}],["$","meta","8",{"name":"keywords","content":"web development,mobile app development,ecommerce,api integration,cloud solutions,AI development,ML development,digital agency"}],["$","meta","9",{"name":"creator","content":"Web Fortuners"}],["$","meta","10",{"name":"publisher","content":"Web Fortuners"}],["$","meta","11",{"name":"robots","content":"index, follow"}],["$","meta","12",{"name":"googlebot","content":"index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"}],["$","meta","13",{"name":"format-detection","content":"telephone=no, address=no, email=no"}],["$","meta","14",{"property":"og:title","content":"Web Fortuners | Digital Solutions Agency"}],["$","meta","15",{"property":"og:description","content":"Web Fortuners is a leading digital solutions agency specializing in web, mobile, ecommerce, API integration, cloud solutions, and AI/ML development."}],["$","meta","16",{"property":"og:url","content":"https://thrivingmindfulways.github.io/web-fortuners"}],["$","meta","17",{"property":"og:site_name","content":"Web Fortuners"}],["$","meta","18",{"property":"og:locale","content":"en_US"}],["$","meta","19",{"property":"og:type","content":"website"}],["$","meta","20",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","21",{"name":"twitter:title","content":"Web Fortuners | Digital Solutions Agency"}],["$","meta","22",{"name":"twitter:description","content":"Web Fortuners is a leading digital solutions agency specializing in web, mobile, ecommerce, API integration, cloud solutions, and AI/ML development."}],["$","link","23",{"rel":"icon","href":"/web-fortuners/favicon.ico","type":"image/x-icon","sizes":"16x16"}],["$","meta","24",{"name":"next-size-adjust"}]]
+1:null
