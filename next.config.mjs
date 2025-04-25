@@ -10,11 +10,7 @@ const nextConfig = {
   trailingSlash: true,
   
   // Disable server-side features
-  reactStrictMode: true,
-  experimental: {
-    // Ensure we're using features compatible with static export
-    appDir: true,
-  },
+  reactStrictMode: true
 };
 
 export default nextConfig;
