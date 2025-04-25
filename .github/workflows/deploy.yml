@@ -19,6 +19,9 @@ concurrency:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -35,16 +38,25 @@ jobs:
         
       - name: Build
         run: |
-          npm run build
-        env:
-          NODE_ENV: production
+          NODE_ENV=production npm run build
+          
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v4
         
       - name: Create .nojekyll file
-        run: touch ./out/.nojekyll
-        
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
+        run: |
+          touch ./out/.nojekyll
+          cp -r ./out/* ./out/
+          
+      - name: Create 404 redirect
+        run: |
+          cp ./out/index.html ./out/404.html
+          
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          folder: out
-          branch: gh-pages
-          clean: true
+          path: './out'
+          
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
