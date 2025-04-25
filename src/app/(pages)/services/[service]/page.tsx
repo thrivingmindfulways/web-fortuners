@@ -1,5 +1,3 @@
-'use client'
-
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -248,6 +246,13 @@ const serviceData = {
   },
 }
 
+// Add generateStaticParams function for static export
+export function generateStaticParams() {
+  return Object.keys(serviceData).map((service) => ({
+    service: service,
+  }))
+}
+
 export default function ServicePage({ params }: { params: { service: string } }) {
   const { service } = params
   
@@ -287,7 +292,7 @@ export default function ServicePage({ params }: { params: { service: string } })
                 {data.longDescription}
               </p>
               
-              <h3 className="text-xl font-semibold mb-4">Technologies & Platforms</h3>
+              <h3 className="text-xl font-semibold mb-4">Technologies & Platforms:</h3>
               <div className="flex flex-wrap gap-2 mb-8">
                 {data.technologies.map((tech, i) => (
                   <span key={i} className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">
