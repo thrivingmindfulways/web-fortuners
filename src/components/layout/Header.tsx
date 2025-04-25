@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 import ThemeSwitcher from '@/components/ui/ThemeSwitcher'
+import { getBaseUrl } from '@/lib/env' // Import the getBaseUrl helper
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
@@ -14,9 +15,11 @@ export default function Header() {
 
   useEffect(() => {
     setMounted(true)
-    // Determine if we're in production (GitHub Pages) or development
-    const isProduction = process.env.NODE_ENV === 'production'
-    setBasePath(isProduction ? '/web-fortuners' : '')
+    // Safe way to determine the base path
+    if (typeof window !== 'undefined') {
+      const isProduction = window.location.hostname === 'thrivingmindfulways.github.io'
+      setBasePath(isProduction ? '/web-fortuners' : '')
+    }
   }, [])
 
   const closeMenu = () => setIsOpen(false)

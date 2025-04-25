@@ -10,8 +10,11 @@ export default function Footer() {
 
   useEffect(() => {
     setMounted(true)
-    // Set the base path based on environment
-    setBasePath(process.env.NODE_ENV === 'production' ? '/web-fortuners' : '')
+    // Set the base path based on client-side detection
+    if (typeof window !== 'undefined') {
+      const isProduction = window.location.hostname === 'thrivingmindfulways.github.io'
+      setBasePath(isProduction ? '/web-fortuners' : '')
+    }
   }, [])
   
   // To prevent hydration mismatch
