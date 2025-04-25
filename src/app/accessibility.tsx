@@ -5,6 +5,9 @@ import { useEffect } from 'react'
 // Add accessibility enhancements
 export function AccessibilityProvider() {
   useEffect(() => {
+    // Check if window is defined to ensure we're on client side
+    if (typeof window === 'undefined') return;
+    
     // Add 'focus-visible' polyfill behavior
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Tab') {
@@ -16,52 +19,37 @@ export function AccessibilityProvider() {
       document.body.classList.remove('using-keyboard')
     }
 
-    // Skip to content functionality
-    const handleSkipToContentClick = () => {
-      const mainContent = document.querySelector('main')
-      if (mainContent) {
-        mainContent.setAttribute('tabindex', '-1')
-        mainContent.focus()
-      }
-    }
-
     // Add event listeners
     window.addEventListener('keydown', handleKeyDown)
     window.addEventListener('mousedown', handleMouseDown)
     
-    const skipLink = document.querySelector('.skip-to-content')
-    if (skipLink) {
-      skipLink.addEventListener('click', handleSkipToContentClick)
-    }
-
-    // Add ARIA attributes to improve accessibility
-    const enhanceAccessibility = () => {
-      // Ensure all interactive elements have accessible names
-      document.querySelectorAll('button, a, [role="button"]').forEach(el => {
-        if (!el.getAttribute('aria-label') && !el.textContent?.trim()) {
-          console.warn('Interactive element without accessible name:', el)
+    // Simplified approach to minimize potential issues
+    // Skip to content functionality is moved to when the DOM is definitely ready
+    setTimeout(() => {
+      const skipLink = document.querySelector('.skip-to-content')
+      if (skipLink) {
+        skipLink.addEventListener('click', () => {
+          const mainContent = document.querySelector('main')
+          if (mainContent) {
+            mainContent.setAttribute('tabindex', '-1')
+            mainContent.focus()
+          }
+        })
+      }
+      
+      // Basic accessibility improvements
+      document.querySelectorAll('a').forEach(link => {
+        // Ensure external links have proper attributes
+        if (link.hostname !== window.location.hostname && !link.getAttribute('rel')) {
+          link.setAttribute('rel', 'noopener noreferrer')
         }
       })
-
-      // Ensure all images have alt text
-      document.querySelectorAll('img').forEach(img => {
-        if (!img.getAttribute('alt')) {
-          console.warn('Image without alt text:', img)
-        }
-      })
-    }
-
-    // Run once after initial render
-    enhanceAccessibility()
+    }, 0)
 
     // Cleanup
     return () => {
       window.removeEventListener('keydown', handleKeyDown)
       window.removeEventListener('mousedown', handleMouseDown)
-      
-      if (skipLink) {
-        skipLink.removeEventListener('click', handleSkipToContentClick)
-      }
     }
   }, [])
 

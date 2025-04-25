@@ -53,7 +53,7 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  manifest: '/web-fortuners/manifest.webmanifest',
+  manifest: '/manifest.webmanifest',
 }
 
 export const viewport: Viewport = {
@@ -127,7 +127,8 @@ export default function RootLayout({
                   const entries = list.getEntries();
                   entries.forEach((entry) => {
                     // Log metrics to console in development
-                    if (process.env.NODE_ENV !== 'production') {
+                    const isProduction = window.location.hostname === 'thrivingmindfulways.github.io';
+                    if (!isProduction) {
                       console.log(\`[Performance] \${entry.name}: \${entry.startTime.toFixed(2)}ms\`);
                     }
                   });

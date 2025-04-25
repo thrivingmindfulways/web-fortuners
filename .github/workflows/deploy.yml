@@ -37,8 +37,12 @@ jobs:
           npm install --legacy-peer-deps
         
       - name: Build
+        env:
+          NEXT_PUBLIC_BASE_PATH: '/web-fortuners'
+          NEXT_PUBLIC_SITE_URL: 'https://thrivingmindfulways.github.io'
+          NODE_ENV: 'production'
         run: |
-          NODE_ENV=production npm run build
+          npm run build
           
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v4
@@ -46,7 +50,6 @@ jobs:
       - name: Create .nojekyll file
         run: |
           touch ./out/.nojekyll
-          cp -r ./out/* ./out/
           
       - name: Create 404 redirect
         run: |
