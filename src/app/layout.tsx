@@ -53,7 +53,7 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  manifest: '/manifest.webmanifest',
+  manifest: '/web-fortuners/manifest.webmanifest',
 }
 
 export const viewport: Viewport = {
@@ -74,11 +74,48 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="no-js">
       <head>
-        <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="/web-fortuners/images/favicon.ico" type="image/x-icon" />
         <link rel="canonical" href="https://thrivingmindfulways.github.io/web-fortuners" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <meta name="color-scheme" content="light dark" />
+        
+        {/* Script for GitHub Pages SPA redirect */}
+        <Script id="github-pages-spa-redirect" strategy="beforeInteractive">
+          {`
+            (function() {
+              // Only run on GitHub Pages
+              if (window.location.hostname === 'thrivingmindfulways.github.io') {
+                // Single Page Apps for GitHub Pages
+                // MIT License
+                // https://github.com/rafgraph/spa-github-pages
+                // This script checks to see if a redirect is present in the query string,
+                // converts it back into the correct url and adds it to the
+                // browser's history using window.history.replaceState(...),
+                // which won't cause the browser to attempt to load the new url.
+                // When the single page app is loaded further down in this file,
+                // the correct url will be waiting in the browser's history for
+                // the single page app to route accordingly.
+                var segmentCount = 1;
+                var l = window.location;
+                if (l.search) {
+                  var q = {};
+                  l.search.slice(1).split('&').forEach(function(v) {
+                    var a = v.split('=');
+                    q[a[0]] = a.slice(1).join('=').replace(/~and~/g, '&');
+                  });
+                  if (q.p !== undefined) {
+                    window.history.replaceState(null, null,
+                      l.pathname.slice(0, -1) + (q.p || '') +
+                      (q.q ? ('?' + q.q) : '') +
+                      l.hash
+                    );
+                  }
+                }
+              }
+            })();
+          `}
+        </Script>
         
         {/* Performance metrics script */}
         <Script id="performance-metrics" strategy="afterInteractive">

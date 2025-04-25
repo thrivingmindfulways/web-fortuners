@@ -2,13 +2,20 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 import ThemeSwitcher from '@/components/ui/ThemeSwitcher'
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
+  const [basePath, setBasePath] = useState('')
+
+  useEffect(() => {
+    // Determine if we're in production (GitHub Pages) or development
+    const isProduction = process.env.NODE_ENV === 'production'
+    setBasePath(isProduction ? '/web-fortuners' : '')
+  }, [])
 
   const closeMenu = () => setIsOpen(false)
 
@@ -18,7 +25,7 @@ export default function Header() {
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center space-x-2">
             <Image 
-              src="/images/logo.png" 
+              src={`${basePath}/images/logo.png`}
               alt="Web Fortuners Logo" 
               width={180} 
               height={40} 
