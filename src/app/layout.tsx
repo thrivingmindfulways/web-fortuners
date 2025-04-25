@@ -53,7 +53,7 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  manifest: '/manifest.webmanifest',
+  manifest: '/web-fortuners/manifest.webmanifest',
 }
 
 export const viewport: Viewport = {
@@ -79,6 +79,9 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <meta name="color-scheme" content="light dark" />
+        
+        {/* Manual web manifest link with correct path */}
+        <link rel="manifest" href="/web-fortuners/manifest.webmanifest" />
         
         {/* Script for GitHub Pages SPA redirect */}
         <Script id="github-pages-spa-redirect" strategy="beforeInteractive">
